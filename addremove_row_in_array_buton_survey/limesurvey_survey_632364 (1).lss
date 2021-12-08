@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+ <LimeSurveyDocType>Survey</LimeSurveyDocType>
+ <DBVersion>365</DBVersion>
+ <languages>
+  <language>en</language>
+ </languages>
+ <groups>
+  <fields>
+   <fieldname>gid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>group_name</fieldname>
+   <fieldname>group_order</fieldname>
+   <fieldname>description</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>randomization_group</fieldname>
+   <fieldname>grelevance</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <gid><![CDATA[3177]]></gid>
+    <sid><![CDATA[632364]]></sid>
+    <group_name><![CDATA[Group1]]></group_name>
+    <group_order><![CDATA[1]]></group_order>
+    <description/>
+    <language><![CDATA[en]]></language>
+    <randomization_group/>
+    <grelevance/>
+   </row>
+   <row>
+    <gid><![CDATA[3178]]></gid>
+    <sid><![CDATA[632364]]></sid>
+    <group_name><![CDATA[G2]]></group_name>
+    <group_order><![CDATA[2]]></group_order>
+    <description/>
+    <language><![CDATA[en]]></language>
+    <randomization_group/>
+    <grelevance/>
+   </row>
+  </rows>
+ </groups>
+ <questions>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>parent_qid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>gid</fieldname>
+   <fieldname>type</fieldname>
+   <fieldname>title</fieldname>
+   <fieldname>question</fieldname>
+   <fieldname>preg</fieldname>
+   <fieldname>help</fieldname>
+   <fieldname>other</fieldname>
+   <fieldname>mandatory</fieldname>
+   <fieldname>question_order</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>scale_id</fieldname>
+   <fieldname>same_default</fieldname>
+   <fieldname>relevance</fieldname>
+   <fieldname>modulename</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[39222]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3177]]></gid>
+    <type><![CDATA[S]]></type>
+    <title><![CDATA[Qa]]></title>
+    <question><![CDATA[Q1. Name of Department / Unit]]></question>
+    <preg/>
+    <help/>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[Y]]></mandatory>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39258]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[;]]></type>
+    <title><![CDATA[Qb]]></title>
+    <question><![CDATA[Q2. List software you need / currently use for teaching and learning
+<script>
+$(document).ready(function() {
+
+   // A function to add or remove rows of an Array (Multi Flexible)(Text) question
+	function varLengthArray(qID) {
+		
+		if ($('#question'+qID+'').length > 0) {
+		    
+			// The HTML content of the Add/Remove elements - modify as you wish
+			var addContent = '[+] add row';
+			var removeContent = '[-] remove row';
+
+			// Create the Add and Remove elements & insert them
+			var el1 = document.createElement('div');
+			el1.setAttribute('id','addButton'+qID);
+			el1.setAttribute('class','btn btn-primary');
+			document.body.appendChild(el1);
+			var el2 = document.createElement('div');
+			el2.setAttribute('id','removeButton'+qID);
+			el2.setAttribute('class','btn btn-danger');
+			document.body.appendChild(el2);
+
+			// Move them to after the array
+			$( 'div#addButton'+qID ).appendTo($( '#question' + qID + ' table.ls-answers' ).parent());
+			$( 'div#removeButton'+qID ).appendTo($( '#question' + qID + ' table.ls-answers' ).parent());
+
+			// Insert their HTML
+			$( 'div#addButton'+qID ).html( addContent );
+			$( 'div#removeButton'+qID ).html( removeContent );
+
+			// Style the elements - you can modify here if you wish
+			$( 'div#addButton'+qID ).css({
+				'margin':'10px 0 10px 10px',
+				'padding':'1px',
+				'text-align':'center',
+				'width':'auto',
+				'cursor':'pointer',
+				'float':'left'
+			});
+
+			$( 'div#removeButton'+qID ).css({
+				'margin':'10px 0 0 10px',
+				'padding':'1px',
+				'text-align':'center',
+				'width':'auto',
+				'cursor':'pointer',
+				'float':'left'
+			});
+
+			// Initially hide the Remove element
+			$( 'div#removeButton'+qID ).hide();
+
+			// Call the functions below when clicked
+			$( 'div#addButton'+qID ).click(function (event) {
+				addRow(qID);
+			});
+			$( 'div#removeButton'+qID ).click(function (event) {
+				removeRow(qID);
+			});
+
+			// Function to add a row, also shows the Remove element and hides the
+			//Add element if all rows are shown
+			function addRow(qID) {
+				var arrayRow = '#question' + qID + ' table.ls-answers tr.subquestion-list';
+				var rowCount = $( arrayRow ).size() - 1;
+				$( arrayRow + '[name="hidden"]:first' ).attr('name', 'visible').show();
+				$( 'div#removeButton'+qID ).show();
+				if ( $( arrayRow + ':eq(' + rowCount + ')' ).attr('name') == 'visible' )  {
+					$( 'div#addButton'+qID ).hide();
+				}
+			}
+
+			// Function to remove a row, also clears the contents of the removed row,
+			// shows the Add element if the last row is hidden and hides the Remove
+			// element if only the first row is shown
+			function removeRow(qID) {
+				var arrayRow = '#question' + qID + ' table.ls-answers tr.subquestion-list';
+				var rowCount = $( arrayRow ).size() - 1;
+				$( arrayRow + '[name="visible"]:last input[type="text"]' ).val('');
+				$( arrayRow + '[name="visible"]:last' ).attr('name', 'hidden').hide();
+				$( 'div#addButton'+qID ).show();
+				if ( $( arrayRow + ':eq(1)' ).attr('name') == 'hidden' )  {
+					$( 'div#removeButton'+qID ).hide();
+				}
+			}
+
+			// Just some initialization stuff
+			var arrayRow = '#question' + qID + ' table.ls-answers tr.subquestion-list';
+			var rowCount = '';
+
+			// Initially hide all except first row or any rows with populated inputs
+			$( arrayRow ).each(function(i) {
+				if ( i > 0 ) {
+					// We also need to give the hidden rows a name cause IE doesn't
+					// recognize jQuery :visible selector consistently
+					$( this ).attr('name', 'hidden').hide();
+
+					$('input[type=text]', this).each(function(i) {
+						if ($(this).attr('value') != '') {
+							$(this).parents('tbody:eq(0)').attr('name', 'visible').show();
+							$( 'div#removeButton'+qID ).show();
+						}
+					});
+					rowCount = i;
+				}
+			});
+		}
+	}
+
+	// Call the function with a question ID
+	varLengthArray({QID});
+
+});
+
+</script>
+<script type="text/javascript" charset="utf-8">
+  $(document).on('ready pjax:scriptcomplete',function(){
+    var thisQuestion = $('#question{QID}');
+    // Add a question class
+    thisQuestion.addClass('custom-array');
+
+    // Column-specific classes
+    $('table.subquestion-list tr', thisQuestion).each(function(i) {
+      $('th, td', this).each(function(i) {
+        $(this).addClass('column-'+i);
+      });
+    });
+
+
+    // Insert selects
+    $('.answer-item.answer_cell_X002', thisQuestion).addClass('with-select').append('<select class="inserted-select form-control list-question-select">\
+  <option value="">...</option>\
+  <option value="1">Yes</option>\
+  <option value="2">No</option>\
+  <option value="99">No answer</option>\
+</select>');
+    // Insert selects
+    $('.answer-item.answer_cell_X004', thisQuestion).addClass('with-select').append('<select class="inserted-select form-control list-question-select">\
+  <option value="">...</option>\
+  <option value="1">Staff</option>\
+  <option value="2">Department</option>\
+  <option value="99">No answer</option>\
+</select>');
+
+		// Listeners on select elements
+		$('.inserted-select', thisQuestion).on('change', function(i) {
+			if($(this).val() != '') {
+				$(this).closest('.answer-item').find('input:text').val($.trim($('option:selected', this).text())).trigger('change');
+			}
+			else {
+				$(this).closest('.answer-item').find('input:text').val('').trigger('change');
+			}
+			
+			// 4th column conditional on 2nd column
+			if($(this).closest('.answer-item').hasClass('answer_cell_X002')) {
+				 handleColumn4($(this));
+			}
+		});
+		
+		function handleColumn4(thisSelect) {
+			var thisRow = $(thisSelect).closest('tr.subquestion-list');
+			var item4 = $('.answer_cell_X004', thisRow);
+var x=$(thisSelect).val();
+			if(x==1)  {
+				$('.inserted-select', item4).prop('disabled', false);
+			}
+			else {
+				$('.inserted-select', item4).val('').prop('disabled', true);
+				$('input:text', item4).val('').trigger('change');
+			}			
+		}
+ 
+		// Returning to page
+		$('.with-select input:text', thisQuestion).each(function(i) {
+			var thisCell = $(this).closest('.answer-item');
+			var inputText = $.trim($(this).val());
+			var selectval = $('select.inserted-select option', thisCell).filter(function () { return $(this).html() == inputText; }).val();
+			$('select.inserted-select', thisCell).val(selectval);
+			
+			// 4th column conditional on 2nd column
+			if($(this).closest('.answer-item').hasClass('answer_cell_X002')) {
+				 handleColumn4($('select.inserted-select', thisCell));
+			}
+		});
+
+    // Clean-up styles
+    $('select.inserted-select', thisQuestion).css({
+      'max-width': '100%'
+    });
+    $('.with-select input:text', thisQuestion).css({
+      'position': 'absolute',
+      'left': '-9999em'
+    });
+  });
+</script>
+
+<style type="text/css">.custom-array table.subquestion-list col {
+    width: auto !important;
+  }
+
+  .custom-array table.subquestion-list thead .column-0 {  width: 10%; }
+  .custom-array table.subquestion-list thead .column-1 {  width: 55%; }
+  .custom-array table.subquestion-list thead .column-2 {  width: 10%; }
+  .custom-array table.subquestion-list thead .column-3 {  width: 10%; }
+  .custom-array table.subquestion-list thead .column-4 {  width: 15%; }
+</style>
+]]></question>
+    <preg/>
+    <help/>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+  </rows>
+ </questions>
+ <subquestions>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>parent_qid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>gid</fieldname>
+   <fieldname>type</fieldname>
+   <fieldname>title</fieldname>
+   <fieldname>question</fieldname>
+   <fieldname>preg</fieldname>
+   <fieldname>help</fieldname>
+   <fieldname>other</fieldname>
+   <fieldname>mandatory</fieldname>
+   <fieldname>question_order</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>scale_id</fieldname>
+   <fieldname>same_default</fieldname>
+   <fieldname>relevance</fieldname>
+   <fieldname>modulename</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[39260]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[X001]]></title>
+    <question><![CDATA[Name of software]]></question>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[1]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance/>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39261]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[X002]]></title>
+    <question><![CDATA[Is software licensed?]]></question>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <question_order><![CDATA[2]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[1]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance/>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39263]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[X003]]></title>
+    <question><![CDATA[Number of users]]></question>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <question_order><![CDATA[3]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[1]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance/>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39265]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[X004]]></title>
+    <question><![CDATA[Licence acquired by]]></question>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <question_order><![CDATA[4]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[1]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance/>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39268]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[SQ001]]></title>
+    <question><![CDATA[1.]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39269]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[SQ002]]></title>
+    <question><![CDATA[2.]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[2]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39270]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[SQ003]]></title>
+    <question><![CDATA[3.]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[3]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39271]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[SQ004]]></title>
+    <question><![CDATA[4.]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[4]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[39272]]></qid>
+    <parent_qid><![CDATA[39258]]></parent_qid>
+    <sid><![CDATA[632364]]></sid>
+    <gid><![CDATA[3178]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[SQ005]]></title>
+    <question><![CDATA[5.]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[5]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+  </rows>
+ </subquestions>
+ <question_attributes>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>attribute</fieldname>
+   <fieldname>value</fieldname>
+   <fieldname>language</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[39222]]></qid>
+    <attribute><![CDATA[hide_tip]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[39222]]></qid>
+    <attribute><![CDATA[text_input_width]]></attribute>
+    <value><![CDATA[4]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[39258]]></qid>
+    <attribute><![CDATA[hide_tip]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+  </rows>
+ </question_attributes>
+ <surveys>
+  <fields>
+   <fieldname>sid</fieldname>
+   <fieldname>gsid</fieldname>
+   <fieldname>admin</fieldname>
+   <fieldname>expires</fieldname>
+   <fieldname>startdate</fieldname>
+   <fieldname>adminemail</fieldname>
+   <fieldname>anonymized</fieldname>
+   <fieldname>faxto</fieldname>
+   <fieldname>format</fieldname>
+   <fieldname>savetimings</fieldname>
+   <fieldname>template</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>additional_languages</fieldname>
+   <fieldname>datestamp</fieldname>
+   <fieldname>usecookie</fieldname>
+   <fieldname>allowregister</fieldname>
+   <fieldname>allowsave</fieldname>
+   <fieldname>autonumber_start</fieldname>
+   <fieldname>autoredirect</fieldname>
+   <fieldname>allowprev</fieldname>
+   <fieldname>printanswers</fieldname>
+   <fieldname>ipaddr</fieldname>
+   <fieldname>refurl</fieldname>
+   <fieldname>publicstatistics</fieldname>
+   <fieldname>publicgraphs</fieldname>
+   <fieldname>listpublic</fieldname>
+   <fieldname>htmlemail</fieldname>
+   <fieldname>sendconfirmation</fieldname>
+   <fieldname>tokenanswerspersistence</fieldname>
+   <fieldname>assessments</fieldname>
+   <fieldname>usecaptcha</fieldname>
+   <fieldname>usetokens</fieldname>
+   <fieldname>bounce_email</fieldname>
+   <fieldname>attributedescriptions</fieldname>
+   <fieldname>emailresponseto</fieldname>
+   <fieldname>emailnotificationto</fieldname>
+   <fieldname>tokenlength</fieldname>
+   <fieldname>showxquestions</fieldname>
+   <fieldname>showgroupinfo</fieldname>
+   <fieldname>shownoanswer</fieldname>
+   <fieldname>showqnumcode</fieldname>
+   <fieldname>bouncetime</fieldname>
+   <fieldname>bounceprocessing</fieldname>
+   <fieldname>bounceaccounttype</fieldname>
+   <fieldname>bounceaccounthost</fieldname>
+   <fieldname>bounceaccountpass</fieldname>
+   <fieldname>bounceaccountencryption</fieldname>
+   <fieldname>bounceaccountuser</fieldname>
+   <fieldname>showwelcome</fieldname>
+   <fieldname>showprogress</fieldname>
+   <fieldname>questionindex</fieldname>
+   <fieldname>navigationdelay</fieldname>
+   <fieldname>nokeyboard</fieldname>
+   <fieldname>alloweditaftercompletion</fieldname>
+   <fieldname>googleanalyticsstyle</fieldname>
+   <fieldname>googleanalyticsapikey</fieldname>
+   <fieldname>showsurveypolicynotice</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <sid><![CDATA[632364]]></sid>
+    <gsid><![CDATA[1]]></gsid>
+    <admin><![CDATA[Francis Akabo]]></admin>
+    <adminemail><![CDATA[francisakabo@knust.edu.gh]]></adminemail>
+    <anonymized><![CDATA[N]]></anonymized>
+    <faxto/>
+    <format><![CDATA[G]]></format>
+    <savetimings><![CDATA[N]]></savetimings>
+    <template><![CDATA[gray_vanilla]]></template>
+    <language><![CDATA[en]]></language>
+    <additional_languages/>
+    <datestamp><![CDATA[N]]></datestamp>
+    <usecookie><![CDATA[N]]></usecookie>
+    <allowregister><![CDATA[N]]></allowregister>
+    <allowsave><![CDATA[N]]></allowsave>
+    <autonumber_start><![CDATA[19]]></autonumber_start>
+    <autoredirect><![CDATA[N]]></autoredirect>
+    <allowprev><![CDATA[N]]></allowprev>
+    <printanswers><![CDATA[N]]></printanswers>
+    <ipaddr><![CDATA[N]]></ipaddr>
+    <refurl><![CDATA[N]]></refurl>
+    <publicstatistics><![CDATA[N]]></publicstatistics>
+    <publicgraphs><![CDATA[N]]></publicgraphs>
+    <listpublic><![CDATA[N]]></listpublic>
+    <htmlemail><![CDATA[Y]]></htmlemail>
+    <sendconfirmation><![CDATA[N]]></sendconfirmation>
+    <tokenanswerspersistence><![CDATA[N]]></tokenanswerspersistence>
+    <assessments><![CDATA[N]]></assessments>
+    <usecaptcha><![CDATA[N]]></usecaptcha>
+    <usetokens><![CDATA[N]]></usetokens>
+    <bounce_email><![CDATA[francisakabo@knust.edu.gh]]></bounce_email>
+    <emailresponseto/>
+    <emailnotificationto/>
+    <tokenlength><![CDATA[15]]></tokenlength>
+    <showxquestions><![CDATA[N]]></showxquestions>
+    <showgroupinfo><![CDATA[D]]></showgroupinfo>
+    <shownoanswer><![CDATA[Y]]></shownoanswer>
+    <showqnumcode><![CDATA[X]]></showqnumcode>
+    <bounceprocessing><![CDATA[N]]></bounceprocessing>
+    <showwelcome><![CDATA[Y]]></showwelcome>
+    <showprogress><![CDATA[N]]></showprogress>
+    <questionindex><![CDATA[0]]></questionindex>
+    <navigationdelay><![CDATA[0]]></navigationdelay>
+    <nokeyboard><![CDATA[N]]></nokeyboard>
+    <alloweditaftercompletion><![CDATA[N]]></alloweditaftercompletion>
+    <googleanalyticsstyle><![CDATA[0]]></googleanalyticsstyle>
+    <googleanalyticsapikey/>
+    <showsurveypolicynotice><![CDATA[0]]></showsurveypolicynotice>
+   </row>
+  </rows>
+ </surveys>
+ <surveys_languagesettings>
+  <fields>
+   <fieldname>surveyls_survey_id</fieldname>
+   <fieldname>surveyls_language</fieldname>
+   <fieldname>surveyls_title</fieldname>
+   <fieldname>surveyls_description</fieldname>
+   <fieldname>surveyls_welcometext</fieldname>
+   <fieldname>surveyls_endtext</fieldname>
+   <fieldname>surveyls_url</fieldname>
+   <fieldname>surveyls_urldescription</fieldname>
+   <fieldname>surveyls_email_invite_subj</fieldname>
+   <fieldname>surveyls_email_invite</fieldname>
+   <fieldname>surveyls_email_remind_subj</fieldname>
+   <fieldname>surveyls_email_remind</fieldname>
+   <fieldname>surveyls_email_register_subj</fieldname>
+   <fieldname>surveyls_email_register</fieldname>
+   <fieldname>surveyls_email_confirm_subj</fieldname>
+   <fieldname>surveyls_email_confirm</fieldname>
+   <fieldname>surveyls_dateformat</fieldname>
+   <fieldname>surveyls_attributecaptions</fieldname>
+   <fieldname>email_admin_notification_subj</fieldname>
+   <fieldname>email_admin_notification</fieldname>
+   <fieldname>email_admin_responses_subj</fieldname>
+   <fieldname>email_admin_responses</fieldname>
+   <fieldname>surveyls_numberformat</fieldname>
+   <fieldname>attachments</fieldname>
+   <fieldname>surveyls_policy_notice</fieldname>
+   <fieldname>surveyls_policy_error</fieldname>
+   <fieldname>surveyls_policy_notice_label</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <surveyls_survey_id><![CDATA[632364]]></surveyls_survey_id>
+    <surveyls_language><![CDATA[en]]></surveyls_language>
+    <surveyls_title><![CDATA[Software Assess Needs]]></surveyls_title>
+    <surveyls_description/>
+    <surveyls_welcometext><![CDATA[<h2 style="text-align: center;"><strong><span style="color:#000000;"><span style="background-color:null;">SOFTWARE ASSESSMENT NEEDS</span></span></strong></h2>
+
+<hr />
+<p style="text-align: center;"><span style="color:#000000;"><span style="font-size:14px;">This questionnaire seeks to collect information on needed / used software for teaching and learning, research and administration. </span></span></p>
+
+<p> </p>
+]]></surveyls_welcometext>
+    <surveyls_endtext/>
+    <surveyls_url/>
+    <surveyls_urldescription/>
+    <surveyls_email_invite_subj><![CDATA[Invitation to participate in a survey]]></surveyls_email_invite_subj>
+    <surveyls_email_invite><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+you have been invited to participate in a survey.<br />
+<br />
+The survey is titled:<br />
+"{SURVEYNAME}"<br />
+<br />
+"{SURVEYDESCRIPTION}"<br />
+<br />
+To participate, please click on the link below.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Click here to do the survey:<br />
+{SURVEYURL}<br />
+<br />
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:<br />
+{OPTOUTURL}<br />
+<br />
+If you are blacklisted but want to participate in this survey and want to receive invitations please click the following link:<br />
+{OPTINURL}]]></surveyls_email_invite>
+    <surveyls_email_remind_subj><![CDATA[Reminder to participate in a survey]]></surveyls_email_remind_subj>
+    <surveyls_email_remind><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+Recently we invited you to participate in a survey.<br />
+<br />
+We note that you have not yet completed the survey, and wish to remind you that the survey is still available should you wish to take part.<br />
+<br />
+The survey is titled:<br />
+"{SURVEYNAME}"<br />
+<br />
+"{SURVEYDESCRIPTION}"<br />
+<br />
+To participate, please click on the link below.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Click here to do the survey:<br />
+{SURVEYURL}<br />
+<br />
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:<br />
+{OPTOUTURL}]]></surveyls_email_remind>
+    <surveyls_email_register_subj><![CDATA[Survey registration confirmation]]></surveyls_email_register_subj>
+    <surveyls_email_register><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+You, or someone using your email address, have registered to participate in an online survey titled {SURVEYNAME}.<br />
+<br />
+To complete this survey, click on the following URL:<br />
+<br />
+{SURVEYURL}<br />
+<br />
+If you have any questions about this survey, or if you did not register to participate and believe this email is in error, please contact {ADMINNAME} at {ADMINEMAIL}.]]></surveyls_email_register>
+    <surveyls_email_confirm_subj><![CDATA[Confirmation of your participation in our survey]]></surveyls_email_confirm_subj>
+    <surveyls_email_confirm><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+this email is to confirm that you have completed the survey titled {SURVEYNAME} and your response has been saved. Thank you for participating.<br />
+<br />
+If you have any further questions about this email, please contact {ADMINNAME} on {ADMINEMAIL}.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME}]]></surveyls_email_confirm>
+    <surveyls_dateformat><![CDATA[1]]></surveyls_dateformat>
+    <email_admin_notification_subj><![CDATA[Response submission for survey {SURVEYNAME}]]></email_admin_notification_subj>
+    <email_admin_notification><![CDATA[Hello,<br />
+<br />
+A new response was submitted for your survey '{SURVEYNAME}'.<br />
+<br />
+Click the following link to see the individual response:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Click the following link to edit the individual response:<br />
+{EDITRESPONSEURL}<br />
+<br />
+View statistics by clicking here:<br />
+{STATISTICSURL}]]></email_admin_notification>
+    <email_admin_responses_subj><![CDATA[Response submission for survey {SURVEYNAME} with results]]></email_admin_responses_subj>
+    <email_admin_responses><![CDATA[Hello,<br />
+<br />
+A new response was submitted for your survey '{SURVEYNAME}'.<br />
+<br />
+Click the following link to see the individual response:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Click the following link to edit the individual response:<br />
+{EDITRESPONSEURL}<br />
+<br />
+View statistics by clicking here:<br />
+{STATISTICSURL}<br />
+<br />
+<br />
+The following answers were given by the participant:<br />
+{ANSWERTABLE}]]></email_admin_responses>
+    <surveyls_numberformat><![CDATA[0]]></surveyls_numberformat>
+   </row>
+  </rows>
+ </surveys_languagesettings>
+ <themes>
+  <theme>
+   <sid>632364</sid>
+   <template_name>gray_vanilla</template_name>
+   <config>
+    <options>inherit</options>
+   </config>
+  </theme>
+  <theme>
+   <sid>632364</sid>
+   <template_name>vanilla</template_name>
+   <config>
+    <options>inherit</options>
+   </config>
+  </theme>
+ </themes>
+ <themes_inherited>
+  <theme>
+   <sid>632364</sid>
+   <template_name>gray_vanilla</template_name>
+   <config>
+    <options>
+     <ajaxmode>off</ajaxmode>
+     <animatebody>off</animatebody>
+     <container>on</container>
+     <bodyanimation>fadeInRight</bodyanimation>
+     <brandlogo>on</brandlogo>
+     <brandlogofile>/files/logo.png</brandlogofile>
+     <font>noto</font>
+     <backgroundimage>off</backgroundimage>
+     <backgroundimagefile>./files/pattern.png</backgroundimagefile>
+     <bodyanimationduration>500</bodyanimationduration>
+     <animatequestion>off</animatequestion>
+     <questionanimation>flipInX</questionanimation>
+     <questionanimationduration>500</questionanimationduration>
+     <animatealert>off</animatealert>
+     <alertanimation>shake</alertanimation>
+     <alertanimationduration>500</alertanimationduration>
+     <bodybackgroundcolor>#ffffff</bodybackgroundcolor>
+     <fontcolor>#444444</fontcolor>
+     <questionbackgroundcolor>#ffffff</questionbackgroundcolor>
+     <questionborder>on</questionborder>
+     <questioncontainershadow>on</questioncontainershadow>
+     <checkicon>f00c</checkicon>
+     <animatecheckbox>on</animatecheckbox>
+     <checkboxanimation>rubberBand</checkboxanimation>
+     <checkboxanimationduration>500</checkboxanimationduration>
+     <animateradio>on</animateradio>
+     <radioanimation>zoomIn</radioanimation>
+     <radioanimationduration>500</radioanimationduration>
+     <zebrastriping>off</zebrastriping>
+     <stickymatrixheaders>off</stickymatrixheaders>
+     <greyoutselected>off</greyoutselected>
+     <hideprivacyinfo>off</hideprivacyinfo>
+     <crosshover>off</crosshover>
+     <showpopups>1</showpopups>
+    </options>
+   </config>
+  </theme>
+  <theme>
+   <sid>632364</sid>
+   <template_name>vanilla</template_name>
+   <config>
+    <options>
+     <ajaxmode>off</ajaxmode>
+     <brandlogo>on</brandlogo>
+     <container>on</container>
+     <brandlogofile>./files/logo.png</brandlogofile>
+     <font>noto</font>
+     <backgroundimage>off</backgroundimage>
+     <backgroundimagefile>./files/pattern.png</backgroundimagefile>
+     <animatebody>off</animatebody>
+     <bodyanimation>fadeInRight</bodyanimation>
+     <bodyanimationduration>500</bodyanimationduration>
+     <animatequestion>off</animatequestion>
+     <questionanimation>flipInX</questionanimation>
+     <questionanimationduration>500</questionanimationduration>
+     <animatealert>off</animatealert>
+     <alertanimation>shake</alertanimation>
+     <alertanimationduration>500</alertanimationduration>
+     <bodybackgroundcolor>#ffffff</bodybackgroundcolor>
+     <fontcolor>#444444</fontcolor>
+     <questionbackgroundcolor>#ffffff</questionbackgroundcolor>
+     <questionborder>on</questionborder>
+     <questioncontainershadow>on</questioncontainershadow>
+     <checkicon>f00c</checkicon>
+     <animatecheckbox>on</animatecheckbox>
+     <checkboxanimation>rubberBand</checkboxanimation>
+     <checkboxanimationduration>500</checkboxanimationduration>
+     <animateradio>on</animateradio>
+     <radioanimation>zoomIn</radioanimation>
+     <radioanimationduration>500</radioanimationduration>
+     <zebrastriping>off</zebrastriping>
+     <stickymatrixheaders>off</stickymatrixheaders>
+     <greyoutselected>off</greyoutselected>
+     <hideprivacyinfo>off</hideprivacyinfo>
+     <crosshover>off</crosshover>
+     <showpopups>1</showpopups>
+    </options>
+   </config>
+  </theme>
+ </themes_inherited>
+</document>
