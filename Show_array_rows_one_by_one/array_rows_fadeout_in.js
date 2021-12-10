@@ -24,5 +24,13 @@
 				 });
 			}
 		});
+		
+		$('.answer-item :radio', thisQuestion).on('click', function(event) { 
+			
+			var now = new Date();
+			alert( now );
+			
+		});
+		
     });
 </script> 
