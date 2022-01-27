@@ -28,10 +28,12 @@ print(survey_df)
 #Read the data of the first survey (sid=999999) into a data.frame. 
 #Notice that the default sLanguageCode = en, so maybe you have to 
 #specify another language (here: All languages)
-w <- get_responses(iSurveyID=897758, sLanguageCode='ru', sResponseType='short') #для lime версии 5
+w <- get_responses(iSurveyID=897758, sLanguageCode='', sResponseType='short') #для lime версии 5
 write.csv(w,"w.csv")
 
 ###Только для lime версии 2###
+# Доступны в call_limer() все методы из ссылки
+
 w_get <- call_limer(method = "export_responses", 
                     params = list(iSurveyID = 897758, #id опроса из survey_df
                                   sDocumentType = "csv", #pdf, csv, xls, doc, json
