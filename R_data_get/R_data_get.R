@@ -27,5 +27,16 @@ print(survey_df)
 #Read the data of the first survey (sid=999999) into a data.frame. 
 #Notice that the default sLanguageCode = en, so maybe you have to 
 #specify another language (here: All languages)
-w <- get_responses(iSurveyID=632364, sLanguageCode='en', sResponseType='short')
+w <- get_responses(iSurveyID=897758, sLanguageCode='ru', sResponseType='short')
+
+w_get <- call_limer(method = "export_responses", 
+                    params = list(iSurveyID = 12345, 
+                                  sDocumentType = "csv", 
+                                  sLanguageCode = "ru", 
+                                  sCompletionStatus = "complete", 
+                                  sHeadingType = "code", 
+                                  sResponseType = "long"
+                                  )
+                    )
+
 w <- base64_to_df(w)
