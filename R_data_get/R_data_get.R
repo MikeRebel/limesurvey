@@ -10,6 +10,7 @@ install_github("cloudyr/limer")
 #############################################################
 
 library(limer)
+library(RCurl)
 
 source("options.R", encoding = "UTF8", local = TRUE)
 
@@ -27,16 +28,27 @@ print(survey_df)
 #Read the data of the first survey (sid=999999) into a data.frame. 
 #Notice that the default sLanguageCode = en, so maybe you have to 
 #specify another language (here: All languages)
-w <- get_responses(iSurveyID=897758, sLanguageCode='ru', sResponseType='short')
+w <- get_responses(iSurveyID=897758, sLanguageCode='ru', sResponseType='short') #для lime версии 5
+write.csv(w,"w.csv")
 
+###Только для lime версии 2###
 w_get <- call_limer(method = "export_responses", 
-                    params = list(iSurveyID = 12345, 
-                                  sDocumentType = "csv", 
-                                  sLanguageCode = "ru", 
-                                  sCompletionStatus = "complete", 
-                                  sHeadingType = "code", 
-                                  sResponseType = "long"
+                    params = list(iSurveyID = 897758, #id опроса из survey_df
+                                  sDocumentType = "csv", #pdf, csv, xls, doc, json
+                                  sLanguageCode = "", #The language to be used "" = all
+                                  sCompletionStatus = "complete", #'complete','incomplete' or 'all' 
+                                  sHeadingType = "code", #'code','full' or 'abbreviated' 
+                                  sResponseType = "short" #'short' or 'long' 
                                   )
                     )
+raw_csv <- rawToChar(base64enc::base64decode(w_get))
+csv <- read.csv(textConnection(raw_csv), 
+         stringsAsFactors = FALSE, 
+         header = TRUE,
+         sep = ",", #посмотреть, какой разделитель в raw_csv и указать его тут
+         encoding = "UTF-8", #установить тут кодировку, в которой скачан raw_csv. Обычно UTF-8
+         fileEncoding = "windows-1251", #установить тут кодировку, в которую сохранится файл. Список всех кодировок - iconvlist()
+         )
 
-w <- base64_to_df(w)
+write.csv2(csv,"w.csv")
+###Конец только для lime версии 2###
