@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 R_data_get/options.R
+R_data_get/w.csv
+R_data_get/w.txt
+R_data_get/w_get.csv
