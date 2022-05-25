@@ -1,0 +1,12 @@
+create an “equation” question with question code “randnumber” and the following content at the question text field, which will generate a random number between 1 and 2:
+{if(is_empty(randnumber.NAOK),rand(1,2),randnumber.NAOK)}
+
+Set “Always hide this question” to “yes”
+
+Use conditions at following questions to show version A or version B of a question.
+
+Alternatively you can use the “relevance” field to define when a question should be shown. The appropriate relevance reads:
+((randnumber.NAOK==”1″))
+
+for the second question:
+((randnumber.NAOK==”2″))
