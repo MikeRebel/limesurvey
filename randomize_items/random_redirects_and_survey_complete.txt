@@ -1,0 +1,11 @@
+Create a question of type equation with code randnumber and as question text you simply add:
+
+{if(is_empty(randnumber.NAOK), rand(1,3), randnumber.NAOK)}
+
+Create question of type equation using question code redirecturl and based on the random number you can define URLs for 3 different surveys.
+
+{if(randnumber.NAOK == 1, "https://survey.mydomain.com/index.php/111111", 
+if(randnumber.NAOK == 2, "https://survey.mydomain.com/index.php/222222", 
+https://survey.mydomain.com/index.php/333333"))}
+
+At the survey settings enable Automatically call end URL and at the End URL text field of the setting just add {redirecturl.NAOK}.
