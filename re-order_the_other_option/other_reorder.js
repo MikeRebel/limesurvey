@@ -14,3 +14,18 @@ var move_element="javatbd{SGQ}"+move_element;
 $("#"+move_element).insertBefore("#"+place_before);
 });
 </script>
+
+/* Выпадающий список. Другое должно быть включено*/
+
+<script type='text/javascript'>
+$(document).ready(function() {
+/* Adjust these settings */
+ var move_element="-oth-";
+ var place_after="85";
+/* Please do NOT change the lines below */
+var place_after="answer{SGQ} option[value="+place_after+"]";
+var move_element="answer{SGQ}  option[value="+move_element+"]";
+$("#"+move_element).hide();
+$("#"+place_after).after("<option value='-oth-'   class='other-item'  >Другой (укажите)</option>");
+});
+</script>
